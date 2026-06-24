@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:worldcup;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  jwt-secret: "replace-this-development-secret-with-a-long-random-string"
+  jwt-expiration-ms: 86400000
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/worldcup_site?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
